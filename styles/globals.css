@@ -1,0 +1,178 @@
+:root {
+  --bg: #f4f1ea;
+  --bg-panel: #fffdf9;
+  --text: #312116;
+  --text-soft: #665346;
+  --border: #dccfbd;
+  --gold: #8f6b23;
+  --wine: #5c1f2d;
+  --button: #6f4e1e;
+  --button-hover: #583d17;
+  font-family: 'Avenir Next', Avenir, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #faf5ea, var(--bg));
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+.site-shell {
+  min-height: 100vh;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.site-header {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg-panel);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  color: var(--wine);
+}
+
+h1 {
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  margin: 0 0 1rem;
+  color: var(--text-soft);
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.nav-link,
+.button {
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-link {
+  border-color: var(--border);
+  background: #fff;
+}
+
+.nav-link.active {
+  border-color: var(--button);
+  background: #f6e8d7;
+}
+
+.page-content {
+  margin-top: 1rem;
+}
+
+.card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.hero-card p,
+.episode-card p,
+.stack p {
+  color: var(--text-soft);
+}
+
+.stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.button {
+  background: var(--button);
+  color: #fff;
+}
+
+.button:hover {
+  background: var(--button-hover);
+}
+
+.button-soft {
+  background: #f0e1cb;
+  color: var(--text);
+}
+
+.button-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+li + li {
+  margin-top: 0.5rem;
+}
+
+.embed-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+iframe {
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .site-shell {
+    padding: 0.6rem;
+  }
+
+  .site-header,
+  .card {
+    border-radius: 12px;
+    padding: 0.9rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}
