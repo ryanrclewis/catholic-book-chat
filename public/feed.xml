@@ -36,7 +36,7 @@
       <pubDate>Mon, 29 Jun 2026 12:00:00 GMT</pubDate>
       <link>https://catholicbookchat.com/episodes/interior-castle-first-mansions</link>
       <guid isPermaLink="true">https://catholicbookchat.com/episodes/interior-castle-first-mansions</guid>
-      <enclosure url="https://catholicbookchat.com/audio/interior-castle-first-mansions.mp3" length="19040000" type="audio/mpeg" />
+      <enclosure url="https://catholicbookchat.com/api/audio/interior-castle-first-mansions.mp3" length="19040000" type="audio/mpeg" />
       
       <itunes:title>Interior Castle — First Mansions</itunes:title>
       <itunes:subtitle>St. Teresa on beginning the life of prayer</itunes:subtitle>
@@ -51,7 +51,7 @@
       <pubDate>Mon, 15 Jun 2026 12:00:00 GMT</pubDate>
       <link>https://catholicbookchat.com/episodes/introduction-to-confessions</link>
       <guid isPermaLink="true">https://catholicbookchat.com/episodes/introduction-to-confessions</guid>
-      <enclosure url="https://catholicbookchat.com/audio/introduction-to-confessions.mp3" length="24240000" type="audio/mpeg" />
+      <enclosure url="https://catholicbookchat.com/api/audio/introduction-to-confessions.mp3" length="24240000" type="audio/mpeg" />
       
       <itunes:title>Introduction to Confessions</itunes:title>
       <itunes:subtitle>Walking with St. Augustine into honest faith</itunes:subtitle>
@@ -66,7 +66,7 @@
       <pubDate>Mon, 01 Jun 2026 12:00:00 GMT</pubDate>
       <link>https://catholicbookchat.com/episodes/the-great-divorce-chapter-1</link>
       <guid isPermaLink="true">https://catholicbookchat.com/episodes/the-great-divorce-chapter-1</guid>
-      <enclosure url="https://catholicbookchat.com/audio/the-great-divorce-chapter-1.mp3" length="21760000" type="audio/mpeg" />
+      <enclosure url="https://catholicbookchat.com/api/audio/the-great-divorce-chapter-1.mp3" length="21760000" type="audio/mpeg" />
       
       <itunes:title>The Great Divorce — Chapter 1</itunes:title>
       <itunes:subtitle>Starting C.S. Lewis with prayer and purpose</itunes:subtitle>

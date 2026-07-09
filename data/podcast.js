@@ -2,7 +2,7 @@ const podcastConfig = {
   title: 'Catholic Book Chat',
   description: 'Faithful conversations on classic Catholic books.',
   siteUrl: 'https://catholicbookchat.com',
-  audioBaseUrl: 'https://catholicbookchat.com/audio',
+  audioBaseUrl: 'https://catholicbookchat.com/api/audio',
   feedPath: '/feed.xml',
   language: 'en-us',
   author: 'Catholic Book Chat Team',

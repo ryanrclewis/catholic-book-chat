@@ -1,9 +1,13 @@
-export async function onRequest(context) {
-  const { request, env, params } = context
+import { env } from 'cloudflare:workers'
+
+export const runtime = 'edge'
+
+export default async function handler(request) {
+  const url = new URL(request.url)
   
-  // Extract file name from the parameter. Pages Functions decodes parameters automatically,
-  // but we ensure it's a string.
-  const key = params.file
+  // Extract file name from the URL path. 
+  const pathParts = url.pathname.split('/')
+  const key = decodeURIComponent(pathParts[pathParts.length - 1])
 
   if (!key) {
     return new Response('Resource Not Found', { status: 404 })
@@ -14,14 +18,10 @@ export async function onRequest(context) {
     return new Response('Method Not Allowed', { status: 405 })
   }
 
-  // Fetch object from the bound R2 bucket.
-  // In Pages, you bind R2 buckets in the dashboard (Settings > Functions > R2 Bucket Bindings)
-  // and they are exposed on the env object.
+  // Fetch object from R2 bucket.
   let object
   try {
-    // Support Range requests (essential for iOS and browser audio seeking)
     const rangeHeader = request.headers.get('range')
-    
     const options = {
       onlyIf: request.headers,
     }
@@ -32,7 +32,7 @@ export async function onRequest(context) {
 
     if (!env.PODCAST_BUCKET) {
       return new Response(
-        'R2 Bucket Binding (PODCAST_BUCKET) is missing in Cloudflare Pages settings.',
+        'R2 Bucket Binding (PODCAST_BUCKET) is missing in Cloudflare Worker settings.',
         { status: 500 }
       )
     }
