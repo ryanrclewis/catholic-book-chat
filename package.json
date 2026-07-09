@@ -9,8 +9,7 @@
     "build": "vinext build",
     "start": "vinext start",
     "lint": "eslint .",
-    "generate:feed": "node scripts/generate-feed.js",
-    "worker:deploy": "wrangler deploy --cwd worker"
+    "generate:feed": "node scripts/generate-feed.js"
   },
   "dependencies": {
     "next": "^16.2.6",
