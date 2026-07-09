@@ -25,7 +25,7 @@ export default function EpisodePage({ episode }) {
         <h3>Listen to this episode</h3>
         <div className="audio-wrap">
           <audio controls preload="metadata" className="audio-player">
-            <source src={`/api/audio/${episode.audioFile}`} type="audio/mpeg" />
+            <source src={`/audio/${episode.audioFile}`} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         </div>

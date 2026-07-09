@@ -41,14 +41,16 @@ You can create the bucket either via the Cloudflare Dashboard or using `wrangler
 npx wrangler r2 bucket create catholic-book-chat-audio
 ```
 
-### 2. Bind R2 Bucket to Worker
-The audio-serving route is built directly into the site using a **Next.js Edge API Route** (under `pages/api/audio/[file].js`).
-1. Go to the **Cloudflare Dashboard** ➜ *Workers & Pages* ➜ select your Worker project (`catholic-book-chat`).
-2. Go to **Settings** ➜ **Variables** ➜ scroll down to **R2 bucket bindings**.
-3. Click **Add binding**.
-4. Set **Variable name** to `PODCAST_BUCKET`.
-5. Set **R2 bucket** to `catholic-book-chat-audio`.
-6. Click **Save and Deploy**. (Redeploy the project for the binding to take effect).
+### 2. Bind R2 Bucket to Pages Functions
+The audio-serving route is built directly into the site using **Cloudflare Pages Functions** (under `functions/audio/[file].js`).
+1. Go to the **Cloudflare Dashboard** ➜ *Workers & Pages* ➜ select your Pages project (`catholic-book-chat`).
+2. Click the **Settings** tab at the top.
+3. In the left-hand menu of the Settings tab, click **Functions**.
+4. Scroll down to the **R2 bucket bindings** section.
+5. Click **Add binding**.
+6. Set **Variable name** to `PODCAST_BUCKET`.
+7. Set **R2 bucket** to `catholic-book-chat-audio`.
+8. Click **Save**. (If your project is already deployed, redeploy it for the binding to take effect).
 
 ### 3. Submit the RSS Feed
 Once your site is built and deployed, your podcast RSS feed will be publicly available at `https://yourdomain.com/feed.xml`.

@@ -1,13 +1,8 @@
-import { env } from 'cloudflare:workers'
-
-export const runtime = 'edge'
-
-export default async function handler(request) {
-  const url = new URL(request.url)
+export async function onRequest(context) {
+  const { request, env, params } = context
   
-  // Extract file name from the URL path. 
-  const pathParts = url.pathname.split('/')
-  const key = decodeURIComponent(pathParts[pathParts.length - 1])
+  // Extract file name from the parameter. Pages Functions decodes parameters automatically.
+  const key = params.file
 
   if (!key) {
     return new Response('Resource Not Found', { status: 404 })
@@ -18,7 +13,7 @@ export default async function handler(request) {
     return new Response('Method Not Allowed', { status: 405 })
   }
 
-  // Fetch object from R2 bucket.
+  // Fetch object from the bound R2 bucket.
   let object
   try {
     const rangeHeader = request.headers.get('range')
@@ -32,7 +27,7 @@ export default async function handler(request) {
 
     if (!env.PODCAST_BUCKET) {
       return new Response(
-        'R2 Bucket Binding (PODCAST_BUCKET) is missing in Cloudflare Worker settings.',
+        'R2 Bucket Binding (PODCAST_BUCKET) is missing in Cloudflare Pages settings.',
         { status: 500 }
       )
     }
