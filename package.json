@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vinext dev",
-    "prebuild": "node scripts/generate-feed.js",
+    "prebuild": "node scripts/patch-vinext.js && node scripts/generate-feed.js",
     "build": "vinext build",
     "start": "vinext start",
     "lint": "eslint .",
