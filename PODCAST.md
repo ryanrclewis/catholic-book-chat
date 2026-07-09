@@ -105,7 +105,7 @@ Upload the MP3 file to your Cloudflare R2 bucket:
   npx wrangler r2 object put catholic-book-chat-audio/the-great-divorce-chapter-2.mp3 --file=./path/to/the-great-divorce-chapter-2.mp3
   ```
 - **Via Cloudflare Dashboard**:
-  Go to R2 ➜ Select `catholic-book-chat-audio` bucket ➜ Click *Upload* ➜ Select your `.mp3` file.
+  Go to R2 ➜ Select `catholic-book-chat-audio` bucket ➜ Click *Upload* ➜ Select your `.mp3` file
 
 ### Step 5: Deploy the Web Application
 Commit your changes to Git and push to your repository:
