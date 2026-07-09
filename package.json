@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vinext dev",
+    "prebuild": "node scripts/generate-feed.js",
     "build": "vinext build",
     "start": "vinext start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "generate:feed": "node scripts/generate-feed.js",
+    "worker:deploy": "wrangler deploy --cwd worker"
   },
   "dependencies": {
     "next": "^16.2.6",

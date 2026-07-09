@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" 
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" 
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <atom:link href="https://catholicbookchat.com/feed.xml" rel="self" type="application/rss+xml" />
+    <title>Catholic Book Chat</title>
+    <description>Faithful conversations on classic Catholic books.</description>
+    <link>https://catholicbookchat.com</link>
+    <language>en-us</language>
+    <copyright>Copyright © 2026 Catholic Book Chat Team</copyright>
+    <lastBuildDate>Mon, 01 Jun 2026 12:00:00 GMT</lastBuildDate>
+    <pubDate>Mon, 01 Jun 2026 12:00:00 GMT</pubDate>
+    
+    <itunes:author>Catholic Book Chat Team</itunes:author>
+    <itunes:subtitle>Faithful conversations on classic Catholic books.</itunes:subtitle>
+    <itunes:summary>Faithful conversations on classic Catholic books.</itunes:summary>
+    <itunes:type>episodic</itunes:type>
+    
+    <itunes:owner>
+      <itunes:name>Catholic Book Chat</itunes:name>
+      <itunes:email>contact@catholicbookchat.com</itunes:email>
+    </itunes:owner>
+    
+    <itunes:image href="https://catholicbookchat.com/favicon.svg" />
+    
+    <itunes:category text="Religion &amp; Spirituality">
+      <itunes:category text="Christianity" />
+    </itunes:category>
+    
+    <itunes:explicit>no</itunes:explicit>
+    <item>
+      <title>Interior Castle — First Mansions</title>
+      <description>A brief overview of Carmelite spirituality and Teresa of Ávila, the First Mansions focusing on humility, self-knowledge, and perseverance, with a suggested reading plan and prayer challenge.</description>
+      <pubDate>Mon, 29 Jun 2026 12:00:00 GMT</pubDate>
+      <link>https://catholicbookchat.com/episodes/interior-castle-first-mansions</link>
+      <guid isPermaLink="true">https://catholicbookchat.com/episodes/interior-castle-first-mansions</guid>
+      <enclosure url="https://catholicbookchat.com/audio/interior-castle-first-mansions.mp3" length="19040000" type="audio/mpeg" />
+      
+      <itunes:title>Interior Castle — First Mansions</itunes:title>
+      <itunes:subtitle>St. Teresa on beginning the life of prayer</itunes:subtitle>
+      <itunes:summary>A brief overview of Carmelite spirituality and Teresa of Ávila, the First Mansions focusing on humility, self-knowledge, and perseverance, with a suggested reading plan and prayer challenge.</itunes:summary>
+      <itunes:duration>00:19:50</itunes:duration>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
+      <title>Introduction to Confessions</title>
+      <description>Why Confessions remains a living companion for modern discipleship, how Augustine frames memory, grace, and restless hearts, and a practical invitation for journaling and examen.</description>
+      <pubDate>Mon, 15 Jun 2026 12:00:00 GMT</pubDate>
+      <link>https://catholicbookchat.com/episodes/introduction-to-confessions</link>
+      <guid isPermaLink="true">https://catholicbookchat.com/episodes/introduction-to-confessions</guid>
+      <enclosure url="https://catholicbookchat.com/audio/introduction-to-confessions.mp3" length="24240000" type="audio/mpeg" />
+      
+      <itunes:title>Introduction to Confessions</itunes:title>
+      <itunes:subtitle>Walking with St. Augustine into honest faith</itunes:subtitle>
+      <itunes:summary>Why Confessions remains a living companion for modern discipleship, how Augustine frames memory, grace, and restless hearts, and a practical invitation for journaling and examen.</itunes:summary>
+      <itunes:duration>00:25:15</itunes:duration>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+    <item>
+      <title>The Great Divorce — Chapter 1</title>
+      <description>Opening prayer and intentions for this season of Catholic Book Chat, context for C.S. Lewis and why The Great Divorce still matters for Catholics, and a chapter 1 discussion on freedom, desire, and the first steps of conversion.</description>
+      <pubDate>Mon, 01 Jun 2026 12:00:00 GMT</pubDate>
+      <link>https://catholicbookchat.com/episodes/the-great-divorce-chapter-1</link>
+      <guid isPermaLink="true">https://catholicbookchat.com/episodes/the-great-divorce-chapter-1</guid>
+      <enclosure url="https://catholicbookchat.com/audio/the-great-divorce-chapter-1.mp3" length="21760000" type="audio/mpeg" />
+      
+      <itunes:title>The Great Divorce — Chapter 1</itunes:title>
+      <itunes:subtitle>Starting C.S. Lewis with prayer and purpose</itunes:subtitle>
+      <itunes:summary>Opening prayer and intentions for this season of Catholic Book Chat, context for C.S. Lewis and why The Great Divorce still matters for Catholics, and a chapter 1 discussion on freedom, desire, and the first steps of conversion.</itunes:summary>
+      <itunes:duration>00:22:40</itunes:duration>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+  </channel>
+</rss>

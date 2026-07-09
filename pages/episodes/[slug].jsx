@@ -22,16 +22,12 @@ export default function EpisodePage({ episode }) {
       </section>
 
       <section className="card">
-        <h3>Listen on Podbean</h3>
-        <div className="embed-wrap">
-          <iframe
-            title={`Podbean player for ${episode.title}`}
-            src={episode.podbeanEmbedUrl}
-            width="100%"
-            height="315"
-            loading="lazy"
-            allow="autoplay"
-          />
+        <h3>Listen to this episode</h3>
+        <div className="audio-wrap">
+          <audio controls preload="metadata" className="audio-player">
+            <source src={`/audio/${episode.audioFile}`} type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
         </div>
       </section>
 
