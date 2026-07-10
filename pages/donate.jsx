@@ -20,7 +20,7 @@ export default function DonatePage() {
       <div className="donate-panel overflow-hidden rounded-3xl border border-[#e5d9c8] bg-white shadow-sm">
         <div className="grid md:grid-cols-[1.2fr_0.8fr]">
           <div className="p-10 md:p-12">
-            <span className="uppercase tracking-[3px] text-xs font-semibold text-[#B38B4D]">{copy.supportEyebrow}</span>
+
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mt-4 text-[#2C1F1A]">
               {copy.title}
             </h2>
@@ -38,7 +38,7 @@ export default function DonatePage() {
           </div>
 
           <div className="bg-[#F9F5ED] border-t md:border-t-0 md:border-l border-[#e5d9c8] p-10 flex flex-col justify-center gap-4 text-center">
-            <div className="text-xs uppercase tracking-[3px] font-semibold text-[#8C6F55]">PayPal Link</div>
+
             <a
               href={`https://www.paypal.com/donate/?hosted_button_id=${copy.paypalButtonId}`}
               target="_blank"

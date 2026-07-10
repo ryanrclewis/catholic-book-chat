@@ -95,7 +95,6 @@ export default function EpisodePage({ episode }) {
       {(episodeData.host || episodeData.guest) && (
         <section className="w-full mt-4">
           <div className="text-center mb-6">
-            <span className="uppercase tracking-[4px] text-xs font-semibold text-[#B38B4D]">THE VOICES</span>
             <h3 className="text-2xl font-semibold tracking-tight mt-2 text-[#2C1F1A] font-serif">Hosts & Guests</h3>
           </div>
 

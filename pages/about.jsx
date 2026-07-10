@@ -21,7 +21,7 @@ export default function AboutPage() {
       <section className="bg-white border border-[#e5d9c8] rounded-3xl p-8 md:p-12 shadow-sm">
         <div className="grid md:grid-cols-12 gap-x-12 gap-y-12 items-center">
           <div className="md:col-span-7">
-            <span className="uppercase tracking-[3px] text-xs font-semibold text-[#B38B4D]">{copy.missionEyebrow}</span>
+
             <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mt-4 leading-tight text-[#2C1F1A]">
               {copy.missionTitle}
             </h2>
@@ -50,7 +50,7 @@ export default function AboutPage() {
       {/* HOSTS */}
       <section className="w-full">
         <div className="text-center mb-12">
-          <span className="uppercase tracking-[4px] text-xs font-semibold text-[#B38B4D]">THE VOICES</span>
+
           <h2 className="text-4xl font-semibold tracking-tight mt-3 text-[#2C1F1A]">{copy.hostsTitle}</h2>
         </div>
 

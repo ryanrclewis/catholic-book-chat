@@ -32,7 +32,6 @@ export default function EpisodesPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="flex flex-col items-center text-center mb-12">
-        <span className="uppercase tracking-[4px] text-xs font-semibold text-[#B38B4D]">THE ARCHIVE</span>
         <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mt-3 text-[#2C1F1A]">Episodes</h2>
         <p className="mt-4 max-w-md text-[#5C4639] leading-relaxed">
           Conversations about literature, faith, culture, and the books that shape how we see the world.

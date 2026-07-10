@@ -50,9 +50,7 @@ export default function HomePage() {
         style={{ backgroundImage: "url('/assets/hero.webp')" }}
       >
         <div className="max-w-5xl mx-auto px-6 py-20 hero-content text-white text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 backdrop-blur text-xs tracking-[3px] font-semibold mb-6 border border-white/30">
-            {copy.heroEyebrow}
-          </div>
+
           <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter mb-4 leading-none">
             {copy.heroTitle}
           </h1>
@@ -78,9 +76,7 @@ export default function HomePage() {
       {latestEpisode && (
         <section id="latest-episode" className="max-w-6xl mx-auto px-6 py-16 border-b border-[#e5d9c8] w-full">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="uppercase tracking-[3px] text-xs text-[#B38B4D] font-semibold mb-2">
-              Latest Episode
-            </div>
+
             <h3 className="text-3xl md:text-4xl font-semibold text-[#2C1F1A] mb-2 leading-tight">
               {latestEpisode.title}
             </h3>
@@ -112,9 +108,7 @@ export default function HomePage() {
       {/* WHERE TO LISTEN */}
       <section id="listen" className="bg-[#2F121E] text-white py-20 w-full">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <span className="uppercase tracking-[3px] text-xs font-semibold text-[#B38B4D]">
-            NEVER MISS AN EPISODE
-          </span>
+
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mt-4 mb-4">
             {copy.listenTitle}
           </h2>
