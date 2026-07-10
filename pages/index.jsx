@@ -182,8 +182,8 @@ export default function HomePage() {
 
           <div className="mt-10 text-sm text-white/50">
             Having trouble finding us? Email{' '}
-            <a href="mailto:hello@betweenthelines.fm" className="underline hover:text-[#B38B4D]">
-              hello@betweenthelines.fm
+            <a href="mailto:contact@catholicbookchat.com" className="underline hover:text-[#B38B4D]">
+              contact@catholicbookchat.com
             </a>
           </div>
         </div>
