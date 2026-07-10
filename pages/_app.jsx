@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import Head from 'next/head'
 import '../styles/globals.css'
 
 const links = [
@@ -15,6 +16,30 @@ export default function App({ Component, pageProps }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F9F5ED] text-[#2C1F1A]">
+      <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Favicons */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+        {/* Global Fallback SEO Metadata */}
+        <title key="title">Between The Lines</title>
+        <meta name="description" content="Between The Lines - A Catholic Book Chat Podcast" key="description" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:site_name" content="Between The Lines" key="og:site_name" />
+        <meta property="og:type" content="website" key="og:type" />
+        <meta property="og:title" content="Between The Lines" key="og:title" />
+        <meta property="og:description" content="Between The Lines - A Catholic Book Chat Podcast" key="og:description" />
+        <meta property="og:image" content="https://catholicbookchat.com/assets/logo.jpg" key="og:image" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" key="twitter:card" />
+        <meta name="twitter:title" content="Between The Lines" key="twitter:title" />
+        <meta name="twitter:description" content="Between The Lines - A Catholic Book Chat Podcast" key="twitter:description" />
+        <meta name="twitter:image" content="https://catholicbookchat.com/assets/logo.jpg" key="twitter:image" />
+      </Head>
       {/* NAV */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#e5d9c8] bg-[#F9F5ED]/95 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6">

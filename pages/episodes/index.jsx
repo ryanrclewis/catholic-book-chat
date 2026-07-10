@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import initialEpisodes from '../../data/episodes'
 
 export default function EpisodesPage() {
@@ -59,6 +60,20 @@ export default function EpisodesPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 pb-32">
+      <Head>
+        <title key="title">Episodes | Between The Lines</title>
+        <meta name="description" content="Browse and listen to all episodes of Between The Lines. Conversations about literature, faith, culture, and the books that shape how we see the world." key="description" />
+        <link rel="canonical" href="https://catholicbookchat.com/episodes" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Episodes | Between The Lines" key="og:title" />
+        <meta property="og:description" content="Browse and listen to all episodes of Between The Lines. Conversations about literature, faith, culture, and the books that shape how we see the world." key="og:description" />
+        <meta property="og:url" content="https://catholicbookchat.com/episodes" key="og:url" />
+        
+        {/* Twitter */}
+        <meta name="twitter:title" content="Episodes | Between The Lines" key="twitter:title" />
+        <meta name="twitter:description" content="Browse and listen to all episodes of Between The Lines. Conversations about literature, faith, culture, and the books that shape how we see the world." key="twitter:description" />
+      </Head>
       <div className="flex flex-col items-center text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mt-3 text-[#2C1F1A]">Episodes</h2>
         <p className="mt-4 max-w-md text-[#5C4639] leading-relaxed">

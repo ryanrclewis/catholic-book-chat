@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import Head from 'next/head'
 import initialEpisodes from '../../data/episodes'
 
 function TranscriptViewer({ transcript }) {
@@ -129,8 +130,35 @@ export default function EpisodePage({ episode }) {
     }) + ' UTC'
   }
 
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return 'https://catholicbookchat.com/assets/logo.jpg'
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      return imagePath
+    }
+    return `https://catholicbookchat.com${imagePath.startsWith('/') ? '' : '/'}${imagePath}`
+  }
+
+  const seoImage = getImageUrl(episodeData.coverImage)
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-8 w-full">
+      <Head>
+        <title key="title">{`${episodeData.title} | Between The Lines`}</title>
+        <meta name="description" content={episodeData.description} key="description" />
+        <link rel="canonical" href={`https://catholicbookchat.com/episodes/${episodeData.slug}`} />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="article" key="og:type" />
+        <meta property="og:title" content={`${episodeData.title} | Between The Lines`} key="og:title" />
+        <meta property="og:description" content={episodeData.description} key="og:description" />
+        <meta property="og:url" content={`https://catholicbookchat.com/episodes/${episodeData.slug}`} key="og:url" />
+        <meta property="og:image" content={seoImage} key="og:image" />
+        
+        {/* Twitter */}
+        <meta name="twitter:title" content={`${episodeData.title} | Between The Lines`} key="twitter:title" />
+        <meta name="twitter:description" content={episodeData.description} key="twitter:description" />
+        <meta name="twitter:image" content={seoImage} key="twitter:image" />
+      </Head>
       {/* Back Link */}
       <Link href="/episodes" className="text-sm font-medium text-[#B38B4D] hover:text-[#C9A35C] flex items-center gap-1 self-start transition-colors duration-200">
         ← Back to Episodes

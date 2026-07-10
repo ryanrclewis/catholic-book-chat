@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Head from 'next/head'
 import defaultContent from '../data/content'
 
 export default function AboutPage() {
@@ -17,6 +18,20 @@ export default function AboutPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-16">
+      <Head>
+        <title key="title">About | Between The Lines</title>
+        <meta name="description" content="Between The Lines is a Catholic podcast dedicated to slow, thoughtful conversation about books that matter — and the deeper questions they raise about God, the human person, culture, and the good life." key="description" />
+        <link rel="canonical" href="https://catholicbookchat.com/about" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="About the Show | Between The Lines" key="og:title" />
+        <meta property="og:description" content="Between The Lines is a Catholic podcast dedicated to slow, thoughtful conversation about books that matter — and the deeper questions they raise about God, the human person, culture, and the good life." key="og:description" />
+        <meta property="og:url" content="https://catholicbookchat.com/about" key="og:url" />
+        
+        {/* Twitter */}
+        <meta name="twitter:title" content="About the Show | Between The Lines" key="twitter:title" />
+        <meta name="twitter:description" content="Between The Lines is a Catholic podcast dedicated to slow, thoughtful conversation about books that matter — and the deeper questions they raise about God, the human person, culture, and the good life." key="twitter:description" />
+      </Head>
       {/* MISSION & CONTENT */}
       <section className="bg-white border border-[#e5d9c8] rounded-3xl p-8 md:p-12 shadow-sm">
         <div className="grid md:grid-cols-12 gap-x-12 gap-y-12 items-center">

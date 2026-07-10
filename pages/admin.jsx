@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import defaultContent from '../data/content.js'
 
 export default function AdminPage() {
@@ -516,6 +517,10 @@ export default function AdminPage() {
   if (!isAuthenticated) {
     return (
       <div className="max-w-md mx-auto my-20 px-6 py-8 bg-white border border-[#e5d9c8] rounded-3xl shadow-md text-center animate-fadeInScale">
+        <Head>
+          <title key="title">Admin Login | Between The Lines</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Head>
         <h2 className="text-3xl font-semibold text-[#2C1F1A] mb-2 font-serif">Admin Login</h2>
         <p className="text-sm text-[#8C6F55] mb-6">Enter password to manage episodes & upload audio.</p>
         
@@ -544,6 +549,10 @@ export default function AdminPage() {
   // --- RENDER ADMIN DASHBOARD ---
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-8 animate-fadeInScale">
+      <Head>
+        <title key="title">Admin Dashboard | Between The Lines</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       {/* Top Banner */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white border border-[#e5d9c8] rounded-3xl p-6 shadow-sm gap-4">
         <div>

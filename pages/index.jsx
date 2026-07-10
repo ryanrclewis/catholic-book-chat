@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import initialEpisodes from '../data/episodes'
 import defaultContent from '../data/content'
 
@@ -44,6 +45,20 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col">
+      <Head>
+        <title key="title">Between The Lines | A Catholic Podcast about Books & Culture</title>
+        <meta name="description" content="Between The Lines is a Catholic podcast hosted by B. Shinkle, dedicated to slow, thoughtful conversation about classic Catholic literature, theology, philosophy, and books that shape souls." key="description" />
+        <link rel="canonical" href="https://catholicbookchat.com/" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Between The Lines | A Catholic Podcast about Books & Culture" key="og:title" />
+        <meta property="og:description" content="Between The Lines is a Catholic podcast hosted by B. Shinkle, dedicated to slow, thoughtful conversation about classic Catholic literature, theology, philosophy, and books that shape souls." key="og:description" />
+        <meta property="og:url" content="https://catholicbookchat.com/" key="og:url" />
+        
+        {/* Twitter */}
+        <meta name="twitter:title" content="Between The Lines | A Catholic Podcast about Books & Culture" key="twitter:title" />
+        <meta name="twitter:description" content="Between The Lines is a Catholic podcast hosted by B. Shinkle, dedicated to slow, thoughtful conversation about classic Catholic literature, theology, philosophy, and books that shape souls." key="twitter:description" />
+      </Head>
       {/* HERO */}
       <header
         className="hero min-h-[85vh] flex items-center relative overflow-hidden"

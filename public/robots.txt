@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /_next/
+
+Sitemap: https://catholicbookchat.com/sitemap.xml

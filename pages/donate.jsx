@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Head from 'next/head'
 import defaultContent from '../data/content'
 
 export default function DonatePage() {
@@ -17,6 +18,20 @@ export default function DonatePage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
+      <Head>
+        <title key="title">Support the Show | Between The Lines</title>
+        <meta name="description" content="Donate to keep Between The Lines going. Your support helps cover high-quality hosting, distribution, audio recording gear, and study guide materials." key="description" />
+        <link rel="canonical" href="https://catholicbookchat.com/donate" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Support the Show | Between The Lines" key="og:title" />
+        <meta property="og:description" content="Donate to keep Between The Lines going. Your support helps cover high-quality hosting, distribution, audio recording gear, and study guide materials." key="og:description" />
+        <meta property="og:url" content="https://catholicbookchat.com/donate" key="og:url" />
+        
+        {/* Twitter */}
+        <meta name="twitter:title" content="Support the Show | Between The Lines" key="twitter:title" />
+        <meta name="twitter:description" content="Donate to keep Between The Lines going. Your support helps cover high-quality hosting, distribution, audio recording gear, and study guide materials." key="twitter:description" />
+      </Head>
       <div className="donate-panel overflow-hidden rounded-3xl border border-[#e5d9c8] bg-white shadow-sm">
         <div className="grid md:grid-cols-[1.2fr_0.8fr]">
           <div className="p-10 md:p-12">

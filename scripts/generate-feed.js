@@ -94,4 +94,59 @@ function generateFeed() {
   console.log(`Successfully generated podcast RSS feed at: ${outputPath}`)
 }
 
+function generateSitemap() {
+  const lastmod = new Date().toISOString().split('T')[0]
+
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Static Pages -->
+  <url>
+    <loc>${podcast.siteUrl}/</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${podcast.siteUrl}/episodes</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>${podcast.siteUrl}/about</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>${podcast.siteUrl}/donate</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+`
+
+  // Sort episodes: latest first
+  const sortedEpisodes = [...episodes].sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
+
+  for (const ep of sortedEpisodes) {
+    const epUrl = `${podcast.siteUrl}/episodes/${ep.slug}`
+    const epDate = new Date(ep.publishDate).toISOString().split('T')[0]
+    xml += `  <url>
+    <loc>${epUrl}</loc>
+    <lastmod>${epDate}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+`
+  }
+
+  xml += `</urlset>`
+
+  const outputPath = path.join(__dirname, '../public/sitemap.xml')
+  fs.writeFileSync(outputPath, xml, 'utf8')
+  console.log(`Successfully generated sitemap.xml at: ${outputPath}`)
+}
+
 generateFeed()
+generateSitemap()
