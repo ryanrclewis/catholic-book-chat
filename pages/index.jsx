@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import initialEpisodes from '../data/episodes'
+import defaultContent from '../data/content'
 
 export default function HomePage() {
   const [episodesList, setEpisodesList] = useState(initialEpisodes)
+  const [copy, setCopy] = useState(defaultContent.home)
 
   useEffect(() => {
     fetch('/api/episodes')
@@ -14,6 +16,15 @@ export default function HomePage() {
         }
       })
       .catch((err) => console.error('Failed to load episodes dynamically:', err))
+
+    fetch('/api/content')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.home) {
+          setCopy(data.home)
+        }
+      })
+      .catch((err) => console.error('Failed to load page content dynamically:', err))
   }, [])
 
   // Sort episodes by date descending to find the latest
@@ -40,13 +51,13 @@ export default function HomePage() {
       >
         <div className="max-w-5xl mx-auto px-6 py-20 hero-content text-white text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 backdrop-blur text-xs tracking-[3px] font-semibold mb-6 border border-white/30">
-            CATHOLIC BOOK CHAT
+            {copy.heroEyebrow}
           </div>
           <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter mb-4 leading-none">
-            Between The Lines
+            {copy.heroTitle}
           </h1>
           <p className="max-w-2xl mx-auto text-xl md:text-2xl font-light text-white/90 tracking-tight mb-8 leading-relaxed">
-            A Catholic chat about books<br className="hidden md:block" /> and other interesting topics.
+            {copy.heroTagline}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -58,7 +69,7 @@ export default function HomePage() {
             </a>
           </div>
           <div className="mt-6 text-xs tracking-widest text-white/60">
-            NEW EPISODES EVERY OTHER MONDAY
+            {copy.newEpisodesFrequency}
           </div>
         </div>
       </header>
@@ -105,27 +116,13 @@ export default function HomePage() {
             NEVER MISS AN EPISODE
           </span>
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mt-4 mb-4">
-            Listen Anywhere
+            {copy.listenTitle}
           </h2>
           <p className="text-white/70 max-w-md mx-auto">
-            Subscribe on your favorite platform or grab the RSS feed directly.
+            {copy.listenDescription}
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 max-w-3xl mx-auto">
-            {/* Links */}
-            {/*             <a
-              href="https://feed.podbean.com/between-the-lines/feed.xml"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="listen-btn group hover:!border-[#B38B4D]"
-            >
-              <span className="text-2xl">🎙️</span>
-              <div className="text-left">
-                <div className="font-semibold">Podbean</div>
-                <div className="text-xs text-[#5C4639] group-hover:text-[#B38B4D]">Primary home</div>
-              </div>
-            </a> */}
-
             <a
               href="#"
               target="_blank"
@@ -152,19 +149,6 @@ export default function HomePage() {
               </div>
             </a>
 
-            {/* <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="listen-btn group hover:!border-[#B38B4D]"
-            >
-              <span className="text-2xl">📻</span>
-              <div className="text-left">
-                <div className="font-semibold">Google Podcasts</div>
-                <div className="text-xs text-[#5C4639] group-hover:text-[#B38B4D]">Subscribe on Android</div>
-              </div>
-            </a> */}
-
             <a
               href="#"
               target="_blank"
@@ -190,14 +174,12 @@ export default function HomePage() {
                 <div className="text-xs text-[#5C4639] group-hover:text-[#B38B4D]">For any podcast app</div>
               </div>
             </a>
-
-
           </div>
 
           <div className="mt-10 text-sm text-white/50">
             Having trouble finding us? Email{' '}
-            <a href="mailto:contact@catholicbookchat.com" className="underline hover:text-[#B38B4D]">
-              contact@catholicbookchat.com
+            <a href={`mailto:${copy.listenEmail}`} className="underline hover:text-[#B38B4D]">
+              {copy.listenEmail}
             </a>
           </div>
         </div>
