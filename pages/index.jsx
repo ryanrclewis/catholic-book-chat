@@ -66,7 +66,7 @@ export default function HomePage() {
             <p className="text-[#5C4639] mb-6 text-lg max-w-2xl mx-auto leading-relaxed">
               {latestEpisode.description}
             </p>
-            
+
             {/* Native Audio Player */}
             <div className="max-w-xl mx-auto mb-8 bg-[#f8f4ed] p-4 rounded-2xl border border-[#e5d9c8]">
               <audio controls preload="metadata" className="w-full accent-burgundy">
@@ -99,7 +99,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 max-w-3xl mx-auto">
             {/* Links */}
-            <a
+            {/*             <a
               href="https://feed.podbean.com/between-the-lines/feed.xml"
               target="_blank"
               rel="noopener noreferrer"
@@ -110,7 +110,7 @@ export default function HomePage() {
                 <div className="font-semibold">Podbean</div>
                 <div className="text-xs text-[#5C4639] group-hover:text-[#B38B4D]">Primary home</div>
               </div>
-            </a>
+            </a> */}
 
             <a
               href="#"
@@ -138,7 +138,7 @@ export default function HomePage() {
               </div>
             </a>
 
-            <a
+            {/* <a
               href="#"
               target="_blank"
               rel="noopener noreferrer"
@@ -148,6 +148,19 @@ export default function HomePage() {
               <div className="text-left">
                 <div className="font-semibold">Google Podcasts</div>
                 <div className="text-xs text-[#5C4639] group-hover:text-[#B38B4D]">Subscribe on Android</div>
+              </div>
+            </a> */}
+
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="listen-btn group hover:!border-[#B38B4D]"
+            >
+              <span className="text-2xl">▶️</span>
+              <div className="text-left">
+                <div className="font-semibold">YouTube</div>
+                <div className="text-xs text-[#5C4639] group-hover:text-[#B38B4D]">Video versions</div>
               </div>
             </a>
 
@@ -164,18 +177,7 @@ export default function HomePage() {
               </div>
             </a>
 
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="listen-btn group hover:!border-[#B38B4D]"
-            >
-              <span className="text-2xl">▶️</span>
-              <div className="text-left">
-                <div className="font-semibold">YouTube</div>
-                <div className="text-xs text-[#5C4639] group-hover:text-[#B38B4D]">Video versions</div>
-              </div>
-            </a>
+
           </div>
 
           <div className="mt-10 text-sm text-white/50">

@@ -90,7 +90,7 @@ export default function App({ Component, pageProps }) {
           <div>
             © {new Date().getFullYear()} Between The Lines. All rights reserved.
           </div>
-          
+
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             <Link href="/about" className="hover:text-[#C9A35C]">About</Link>
             <Link href="/episodes" className="hover:text-[#C9A35C]">Episodes</Link>
@@ -99,7 +99,7 @@ export default function App({ Component, pageProps }) {
           </div>
 
           <div className="text-xs text-[#8C6F55]">
-            Built by <a href="https://archangel-laboratories.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#C9A35C]">Archangel Laboratories</a>
+            Design and engineered by <a href="https://archangel-laboratories.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#C9A35C]">Archangel Laboratories</a>
           </div>
         </div>
       </footer>
