@@ -1,181 +1,262 @@
+@import "tailwindcss";
+
+/* Custom variables from Between The Lines */
 :root {
-  --bg: #f4f1ea;
-  --bg-panel: #fffdf9;
-  --text: #312116;
-  --text-soft: #665346;
-  --border: #dccfbd;
-  --gold: #8f6b23;
-  --wine: #5c1f2d;
-  --button: #6f4e1e;
-  --button-hover: #583d17;
-  font-family: 'Avenir Next', Avenir, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.5;
+  --color-burgundy: #4A1C2E;
+  --color-burgundy-dark: #2F121E;
+  --color-gold: #B38B4D;
+  --color-gold-light: #C9A35C;
+  --color-cream: #F9F5ED;
+  --color-cream-dark: #F0E9DC;
+  --color-text: #2C1F1A;
+  --color-text-light: #5C4639;
+  --color-white: #FFFFFF;
+  --radius: 12px;
+  --shadow: 0 10px 30px -15px rgb(0 0 0 / 0.2);
 }
 
-* {
-  box-sizing: border-box;
+/* Elegant serif for headings */
+h1, h2, h3, .serif {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
-body {
-  margin: 0;
-  background: radial-gradient(circle at top, #faf5ea, var(--bg));
-  color: var(--text);
+/* Navigation Links decoration */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
 }
 
-a {
-  color: inherit;
+.nav-link:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-gold);
+  transition: width 0.2s ease;
 }
 
-.site-shell {
-  min-height: 100vh;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1rem;
+.nav-link:hover:after {
+  width: 100%;
 }
 
-.site-header {
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--bg-panel);
-  padding: 1.5rem;
-  text-align: center;
+/* Hero background sizing */
+.hero {
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
-.eyebrow {
-  margin: 0;
-  color: var(--gold);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-size: 0.8rem;
+@media (max-width: 768px) {
+  .hero {
+    background-position: center 18%;
+    min-height: 82vh;
+  }
 }
 
-h1,
-h2,
-h3 {
-  margin-top: 0;
-  color: var(--wine);
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(42, 17, 28, 0.55) 0%,
+    rgba(42, 17, 28, 0.75) 55%,
+    rgba(42, 17, 28, 0.85) 100%
+  );
 }
 
-h1 {
-  margin-bottom: 0.5rem;
+.hero-content {
+  position: relative;
+  z-index: 1;
 }
 
-.tagline {
-  margin: 0 0 1rem;
-  color: var(--text-soft);
-}
-
-.main-nav {
-  display: flex;
-  flex-wrap: wrap;
+/* Custom Buttons matching the old site design */
+.btn {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
   gap: 0.5rem;
-}
-
-.nav-link,
-.button {
-  display: inline-block;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  padding: 0.5rem 0.95rem;
-  text-decoration: none;
+  padding: 0.875rem 1.75rem;
   font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-size: 0.95rem;
+  line-height: 1;
 }
 
-.nav-link {
-  border-color: var(--border);
-  background: #fff;
+.btn-primary {
+  background: var(--color-burgundy);
+  color: white;
 }
 
-.nav-link.active {
-  border-color: var(--button);
-  background: #f6e8d7;
+.btn-primary:hover {
+  background: var(--color-burgundy-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
 }
 
-.page-content {
-  margin-top: 1rem;
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.85);
 }
 
-.card {
-  background: var(--bg-panel);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 1rem;
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: white;
 }
 
-.hero-card p,
-.episode-card p,
-.stack p {
-  color: var(--text-soft);
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-burgundy-dark);
 }
 
-.stack {
-  display: grid;
-  gap: 1rem;
+.btn-gold:hover {
+  background: var(--color-gold-light);
+  transform: translateY(-1px);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+/* Custom Cards matching old site */
+.card-old {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 }
 
-.button {
-  background: var(--button);
-  color: #fff;
+.card-old:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgb(0 0 0 / 0.15);
 }
 
-.button:hover {
-  background: var(--button-hover);
+.episode-card-old {
+  border: 1px solid #e5d9c8;
 }
 
-.button-soft {
-  background: #f0e1cb;
-  color: var(--text);
+.episode-card-old:hover {
+  border-color: var(--color-gold);
 }
 
-.button-row {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 1rem;
+.section-title {
+  position: relative;
+  display: inline-block;
 }
 
-ul {
-  margin: 0;
-  padding-left: 1.25rem;
+.section-title:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 2px;
+  background: var(--color-gold);
+  border-radius: 2px;
 }
 
-li + li {
-  margin-top: 0.5rem;
-}
-
-.audio-wrap {
-  background: #fdfaf4;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 0.75rem;
+/* Listen Button styles */
+.listen-btn {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: white;
+  border: 1px solid #d4c3a8;
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: all 0.2s ease;
 }
 
-.audio-player {
+.listen-btn:hover {
+  border-color: var(--color-burgundy);
+  background: var(--color-cream);
+  transform: translateY(-1px);
+}
+
+/* Host Card styles */
+.host-card {
+  background: white;
+  border: 1px solid #e5d9c8;
+}
+
+.host-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 9999px;
+  object-fit: cover;
+  border: 4px solid var(--color-cream);
+}
+
+/* Modal styles */
+.modal {
+  animation: fadeInScale 0.2s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.audio-player-wrap {
+  background: #f8f4ed;
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+audio {
   width: 100%;
-  outline: none;
+  accent-color: var(--color-burgundy);
 }
 
-@media (max-width: 640px) {
-  .site-shell {
-    padding: 0.6rem;
-  }
+footer a {
+  color: #d4c3a8;
+  transition: color 0.2s ease;
+}
 
-  .site-header,
-  .card {
-    border-radius: 12px;
-    padding: 0.9rem;
-  }
+footer a:hover {
+  color: var(--color-gold-light);
+}
 
-  h1 {
-    font-size: 1.8rem;
+.gold-underline {
+  text-decoration-color: var(--color-gold);
+}
+
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
   }
+}
+
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-text-light);
+}
+
+/* Custom layout shell adjustment to be compatible with Tailwind content */
+body {
+  background-color: var(--color-cream);
+  color: var(--color-text);
 }
