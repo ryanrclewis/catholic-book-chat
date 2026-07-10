@@ -29,8 +29,25 @@ export default function AdminPage() {
   const [guest, setGuest] = useState('')
   const [uploadProgress, setUploadProgress] = useState(0)
   const [isUploading, setIsUploading] = useState(false)
+  const [editingEpisodeSlug, setEditingEpisodeSlug] = useState(null)
 
   const fileInputRef = useRef(null)
+
+  const formatForDateTimeInput = (dateStr) => {
+    if (!dateStr) return ''
+    try {
+      const date = new Date(dateStr)
+      const pad = (n) => String(n).padStart(2, '0')
+      const yyyy = date.getFullYear()
+      const mm = pad(date.getMonth() + 1)
+      const dd = pad(date.getDate())
+      const hh = pad(date.getHours())
+      const min = pad(date.getMinutes())
+      return `${yyyy}-${mm}-${dd}T${hh}:${min}`
+    } catch (e) {
+      return ''
+    }
+  }
 
   // Check login on load
   useEffect(() => {
@@ -185,6 +202,39 @@ export default function AdminPage() {
       .replace(/-+/g, '-')
   }
 
+  const handleStartEditEpisode = (ep) => {
+    setEditingEpisodeSlug(ep.slug)
+    setTitle(ep.title)
+    setSubtitle(ep.subtitle || '')
+    setDescription(ep.description || '')
+    setPublishDate(formatForDateTimeInput(ep.publishDate))
+    setDuration(ep.duration || '')
+    setFileSize(ep.fileSize || 0)
+    setAudioFilename(ep.audioFile || '')
+    setHost(ep.host || 'B. Shinkle')
+    setGuest(ep.guest || '')
+    setShowNotes(ep.showNotes && ep.showNotes.length > 0 ? ep.showNotes : [''])
+    setAudioFile(null)
+    if (fileInputRef.current) fileInputRef.current.value = ''
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleCancelEditEpisode = () => {
+    setEditingEpisodeSlug(null)
+    setTitle('')
+    setSubtitle('')
+    setDescription('')
+    setPublishDate('')
+    setDuration('')
+    setFileSize(0)
+    setAudioFile(null)
+    setAudioFilename('')
+    setHost('B. Shinkle')
+    setGuest('')
+    setShowNotes([''])
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
+
   const handleSaveEpisode = async (e) => {
     e.preventDefault()
     setError('')
@@ -195,9 +245,9 @@ export default function AdminPage() {
       return
     }
 
-    const slug = generateSlug(title)
+    const slug = editingEpisodeSlug || generateSlug(title)
     
-    if (episodes.some(ep => ep.slug === slug)) {
+    if (!editingEpisodeSlug && episodes.some(ep => ep.slug === slug)) {
       setError(`An episode with slug "${slug}" already exists. Please choose a different title.`)
       return
     }
@@ -238,7 +288,7 @@ export default function AdminPage() {
         })
       }
 
-      const newEpisode = {
+      const episodeDataObj = {
         slug,
         title,
         subtitle: subtitle || 'New Episode',
@@ -252,7 +302,12 @@ export default function AdminPage() {
         showNotes: showNotes.filter(n => n.trim() !== '')
       }
 
-      const updatedEpisodes = [newEpisode, ...episodes]
+      let updatedEpisodes
+      if (editingEpisodeSlug) {
+        updatedEpisodes = episodes.map(ep => ep.slug === editingEpisodeSlug ? episodeDataObj : ep)
+      } else {
+        updatedEpisodes = [episodeDataObj, ...episodes]
+      }
 
       const saveRes = await fetch('/api/episodes', {
         method: 'POST',
@@ -264,7 +319,8 @@ export default function AdminPage() {
       })
 
       if (saveRes.ok) {
-        setSuccess('Episode uploaded and published successfully!')
+        setSuccess(editingEpisodeSlug ? 'Episode updated successfully!' : 'Episode uploaded and published successfully!')
+        setEditingEpisodeSlug(null)
         setTitle('')
         setSubtitle('')
         setDescription('')
@@ -482,7 +538,20 @@ export default function AdminPage() {
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           {/* Left Hand: Upload Form */}
           <section className="lg:col-span-7 bg-white border border-[#e5d9c8] rounded-3xl p-8 shadow-sm">
-            <h3 className="text-xl font-semibold text-[#2C1F1A] mb-6 font-serif">Publish New Episode</h3>
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-semibold text-[#2C1F1A] font-serif">
+                {editingEpisodeSlug ? 'Edit Episode' : 'Publish New Episode'}
+              </h3>
+              {editingEpisodeSlug && (
+                <button
+                  type="button"
+                  onClick={handleCancelEditEpisode}
+                  className="btn text-xs py-1.5 px-4 border border-[#d4c3a8] text-[#4A1C2E] bg-white hover:bg-[#F9F5ED]"
+                >
+                  Cancel Edit
+                </button>
+              )}
+            </div>
             
             <form onSubmit={handleSaveEpisode} className="flex flex-col gap-5">
               <div>
@@ -656,7 +725,7 @@ export default function AdminPage() {
                 disabled={isUploading || isLoading}
                 className="btn btn-primary w-full py-3.5 mt-2"
               >
-                {isUploading ? `Uploading File (${uploadProgress}%)...` : 'Publish Episode'}
+                {isUploading ? `Uploading File (${uploadProgress}%)...` : (editingEpisodeSlug ? 'Save Changes' : 'Publish Episode')}
               </button>
             </form>
           </section>
@@ -685,14 +754,24 @@ export default function AdminPage() {
                         <p className="text-[10px] text-[#8C6F55] font-mono">{ep.audioFile}</p>
                       </div>
                       
-                      <button
-                        onClick={() => handleDeleteEpisode(ep.slug)}
-                        disabled={isUploading}
-                        className="p-2 border border-red-100 text-red-500 rounded-xl hover:bg-red-50 text-xs"
-                        title="Delete Episode"
-                      >
-                        🗑️
-                      </button>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleStartEditEpisode(ep)}
+                          disabled={isUploading}
+                          className="p-2 border border-blue-100 text-blue-600 rounded-xl hover:bg-blue-50 text-xs"
+                          title="Edit Episode"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          onClick={() => handleDeleteEpisode(ep.slug)}
+                          disabled={isUploading}
+                          className="p-2 border border-red-100 text-red-500 rounded-xl hover:bg-red-50 text-xs"
+                          title="Delete Episode"
+                        >
+                          🗑️
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
