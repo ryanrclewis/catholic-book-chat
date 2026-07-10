@@ -31,7 +31,29 @@ export default function AdminPage() {
   const [isUploading, setIsUploading] = useState(false)
   const [editingEpisodeSlug, setEditingEpisodeSlug] = useState(null)
 
+  // New metadata fields
+  const [episodeNumber, setEpisodeNumber] = useState('')
+  const [rating, setRating] = useState('5.0')
+  const [frequency, setFrequency] = useState('Bi-weekly')
+  const [externalLinks, setExternalLinks] = useState([{ label: '', url: '' }])
+  const [transcript, setTranscript] = useState('')
+
   const fileInputRef = useRef(null)
+
+  const handleAddLinkField = () => {
+    setExternalLinks([...externalLinks, { label: '', url: '' }])
+  }
+
+  const handleRemoveLinkField = (index) => {
+    const updated = externalLinks.filter((_, i) => i !== index)
+    setExternalLinks(updated.length > 0 ? updated : [{ label: '', url: '' }])
+  }
+
+  const handleLinkChange = (index, field, value) => {
+    const updated = [...externalLinks]
+    updated[index] = { ...updated[index], [field]: value }
+    setExternalLinks(updated)
+  }
 
   const formatForDateTimeInput = (dateStr) => {
     if (!dateStr) return ''
@@ -214,6 +236,11 @@ export default function AdminPage() {
     setHost(ep.host || 'B. Shinkle')
     setGuest(ep.guest || '')
     setShowNotes(ep.showNotes && ep.showNotes.length > 0 ? ep.showNotes : [''])
+    setEpisodeNumber(ep.episodeNumber !== undefined ? String(ep.episodeNumber) : '')
+    setRating(ep.rating || '5.0')
+    setFrequency(ep.frequency || 'Bi-weekly')
+    setExternalLinks(ep.externalLinks && ep.externalLinks.length > 0 ? ep.externalLinks : [{ label: '', url: '' }])
+    setTranscript(ep.transcript || '')
     setAudioFile(null)
     if (fileInputRef.current) fileInputRef.current.value = ''
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -232,6 +259,11 @@ export default function AdminPage() {
     setHost('B. Shinkle')
     setGuest('')
     setShowNotes([''])
+    setEpisodeNumber('')
+    setRating('5.0')
+    setFrequency('Bi-weekly')
+    setExternalLinks([{ label: '', url: '' }])
+    setTranscript('')
     if (fileInputRef.current) fileInputRef.current.value = ''
   }
 
@@ -299,7 +331,12 @@ export default function AdminPage() {
         audioFile: audioFilename,
         host: host || 'B. Shinkle',
         guest: guest || '',
-        showNotes: showNotes.filter(n => n.trim() !== '')
+        showNotes: showNotes.filter(n => n.trim() !== ''),
+        episodeNumber: episodeNumber ? parseInt(episodeNumber, 10) : undefined,
+        rating: rating || '5.0',
+        frequency: frequency || 'Bi-weekly',
+        externalLinks: externalLinks.filter(l => l.label.trim() !== '' && l.url.trim() !== ''),
+        transcript: transcript || ''
       }
 
       let updatedEpisodes
@@ -332,6 +369,11 @@ export default function AdminPage() {
         setHost('B. Shinkle')
         setGuest('')
         setShowNotes([''])
+        setEpisodeNumber('')
+        setRating('5.0')
+        setFrequency('Bi-weekly')
+        setExternalLinks([{ label: '', url: '' }])
+        setTranscript('')
         if (fileInputRef.current) fileInputRef.current.value = ''
         
         setEpisodes(updatedEpisodes)
@@ -642,6 +684,43 @@ export default function AdminPage() {
                 </div>
               </div>
 
+              <div className="grid sm:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-[#8C6F55] mb-2">Episode Number</label>
+                  <input
+                    type="number"
+                    min="1"
+                    placeholder="e.g. 4"
+                    value={episodeNumber}
+                    onChange={(e) => setEpisodeNumber(e.target.value)}
+                    disabled={isUploading}
+                    className="w-full border border-[#d4c3a8] focus:border-[#B38B4D] bg-[#F9F5ED] px-4 py-3 rounded-2xl outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-[#8C6F55] mb-2">Rating</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. 5.0"
+                    value={rating}
+                    onChange={(e) => setRating(e.target.value)}
+                    disabled={isUploading}
+                    className="w-full border border-[#d4c3a8] focus:border-[#B38B4D] bg-[#F9F5ED] px-4 py-3 rounded-2xl outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-[#8C6F55] mb-2">Frequency</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Bi-weekly"
+                    value={frequency}
+                    onChange={(e) => setFrequency(e.target.value)}
+                    disabled={isUploading}
+                    className="w-full border border-[#d4c3a8] focus:border-[#B38B4D] bg-[#F9F5ED] px-4 py-3 rounded-2xl outline-none"
+                  />
+                </div>
+              </div>
+
               <div>
                 <label className="block text-xs uppercase tracking-wider font-semibold text-[#8C6F55] mb-2">Audio File (.mp3)</label>
                 <input
@@ -703,6 +782,58 @@ export default function AdminPage() {
                     + Add Bullet Point
                   </button>
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider font-semibold text-[#8C6F55] mb-2 font-sans">External Links (From this episode)</label>
+                <div className="flex flex-col gap-3">
+                  {externalLinks.map((link, index) => (
+                    <div key={index} className="flex gap-2 items-center">
+                      <input
+                        type="text"
+                        placeholder="Link Label (e.g. C.S. Lewis Foundation)"
+                        value={link.label}
+                        onChange={(e) => handleLinkChange(index, 'label', e.target.value)}
+                        disabled={isUploading}
+                        className="flex-grow border border-[#d4c3a8] focus:border-[#B38B4D] bg-[#F9F5ED] px-4 py-2.5 rounded-xl outline-none text-sm"
+                      />
+                      <input
+                        type="url"
+                        placeholder="Link URL (e.g. https://...)"
+                        value={link.url}
+                        onChange={(e) => handleLinkChange(index, 'url', e.target.value)}
+                        disabled={isUploading}
+                        className="flex-grow border border-[#d4c3a8] focus:border-[#B38B4D] bg-[#F9F5ED] px-4 py-2.5 rounded-xl outline-none text-sm"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveLinkField(index)}
+                        className="p-2 border border-red-200 text-red-500 rounded-xl hover:bg-red-50 text-sm"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={handleAddLinkField}
+                    className="btn text-xs py-2 border border-[#B38B4D] text-[#4A1C2E] hover:bg-[#F9F5ED] self-start"
+                  >
+                    + Add External Link
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider font-semibold text-[#8C6F55] mb-2 font-sans">Transcript</label>
+                <textarea
+                  rows={6}
+                  placeholder="Enter full transcript paragraph-by-paragraph. Separate paragraphs with double newlines."
+                  value={transcript}
+                  onChange={(e) => setTranscript(e.target.value)}
+                  disabled={isUploading}
+                  className="w-full border border-[#d4c3a8] focus:border-[#B38B4D] bg-[#F9F5ED] px-4 py-3 rounded-2xl outline-none resize-none leading-relaxed text-sm"
+                />
               </div>
 
               {isUploading && (
