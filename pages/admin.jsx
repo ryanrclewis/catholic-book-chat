@@ -127,13 +127,13 @@ export default function AdminPage() {
         const hrs = Math.floor(totalSeconds / 3600)
         const mins = Math.floor((totalSeconds % 3600) / 60)
         const secs = totalSeconds % 60
-        
+
         const formatted = [
           hrs.toString().padStart(2, '0'),
           mins.toString().padStart(2, '0'),
           secs.toString().padStart(2, '0')
         ].join(':')
-        
+
         setDuration(formatted)
         setIsLoading(false)
       }
@@ -179,7 +179,7 @@ export default function AdminPage() {
     }
 
     const slug = generateSlug(title)
-    
+
     // Check if slug is unique
     if (episodes.some(ep => ep.slug === slug)) {
       setError(`An episode with slug "${slug}" already exists. Please choose a different title.`)
@@ -213,7 +213,7 @@ export default function AdminPage() {
               let errorMsg = 'Audio upload failed'
               try {
                 errorMsg = JSON.parse(xhr.responseText).error || errorMsg
-              } catch (e) {}
+              } catch (e) { }
               reject(new Error(errorMsg))
             }
           }
@@ -262,7 +262,7 @@ export default function AdminPage() {
         setAudioFilename('')
         setShowNotes([''])
         if (fileInputRef.current) fileInputRef.current.value = ''
-        
+
         // Refresh local list
         setEpisodes(updatedEpisodes)
       } else {
@@ -279,7 +279,7 @@ export default function AdminPage() {
   }
 
   const handleDeleteEpisode = async (slugToDelete) => {
-    if (!confirm('Are you sure you want to delete this episode? This will delete its metadata from the website, but the audio file will remain in R2.')) {
+    if (!confirm('Are you sure you want to delete this episode? This will delete its metadata from the website, but the audio file will remain in the R2 bucket.')) {
       return
     }
 
@@ -333,7 +333,7 @@ export default function AdminPage() {
       <div className="max-w-md mx-auto my-20 px-6 py-8 bg-white border border-[#e5d9c8] rounded-3xl shadow-md text-center">
         <h2 className="text-3xl font-semibold text-[#2C1F1A] mb-2">Admin Login</h2>
         <p className="text-sm text-[#8C6F55] mb-6">Enter password to manage episodes & upload audio.</p>
-        
+
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <input
             type="password"
@@ -380,7 +380,7 @@ export default function AdminPage() {
         {/* Left Hand: Upload Form */}
         <section className="lg:col-span-7 bg-white border border-[#e5d9c8] rounded-3xl p-8 shadow-sm">
           <h3 className="text-xl font-semibold text-[#2C1F1A] mb-6">Publish New Episode</h3>
-          
+
           <form onSubmit={handleSaveEpisode} className="flex flex-col gap-5">
             <div>
               <label className="block text-xs uppercase tracking-wider font-semibold text-[#8C6F55] mb-2">Title</label>
@@ -539,7 +539,7 @@ export default function AdminPage() {
         <section className="lg:col-span-5 flex flex-col gap-6">
           <div className="bg-white border border-[#e5d9c8] rounded-3xl p-6 shadow-sm">
             <h3 className="text-xl font-semibold text-[#2C1F1A] mb-4">Published Episodes</h3>
-            
+
             {isLoading && episodes.length === 0 ? (
               <p className="text-sm text-[#8C6F55]">Loading archive...</p>
             ) : episodes.length === 0 ? (
@@ -558,7 +558,7 @@ export default function AdminPage() {
                       <h4 className="font-semibold text-[#2C1F1A] leading-tight text-sm mb-1">{ep.title}</h4>
                       <p className="text-[10px] text-[#8C6F55] font-mono">{ep.audioFile}</p>
                     </div>
-                    
+
                     <button
                       onClick={() => handleDeleteEpisode(ep.slug)}
                       disabled={isUploading}
