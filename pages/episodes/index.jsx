@@ -1,8 +1,22 @@
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import episodes from '../../data/episodes'
+import initialEpisodes from '../../data/episodes'
 
 export default function EpisodesPage() {
-  const sortedEpisodes = [...episodes].sort(
+  const [episodesList, setEpisodesList] = useState(initialEpisodes)
+
+  useEffect(() => {
+    fetch('/api/episodes')
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setEpisodesList(data)
+        }
+      })
+      .catch((err) => console.error('Failed to load episodes dynamically:', err))
+  }, [])
+
+  const sortedEpisodes = [...episodesList].sort(
     (a, b) => new Date(b.publishDate) - new Date(a.publishDate)
   )
 
