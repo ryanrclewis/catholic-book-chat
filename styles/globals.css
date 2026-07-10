@@ -1,5 +1,67 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: "New York", Georgia, serif;
+  --font-sans: "SF Pro Display", -apple-system, sans-serif;
+  --font-mono: "SF Mono", monospace;
+}
+
+@font-face {
+  font-family: "New York";
+  src: url("/fonts/NewYorkMedium-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "New York";
+  src: url("/fonts/NewYorkMedium-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "New York";
+  src: url("/fonts/NewYork.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/SF-Pro-Display-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/fonts/SF-Pro-Display-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Mono";
+  src: url("/fonts/SF-Mono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Mono";
+  src: url("/fonts/SF-Mono-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Custom variables from Between The Lines */
 :root {
   --color-burgundy: #4A1C2E;
@@ -16,10 +78,18 @@
 }
 
 /* Elegant serif for headings */
-h1, h2, h3, .serif {
-  font-family: Georgia, "Times New Roman", serif;
+h1, h2, h3, h4, h5, h6, .serif {
+  font-family: "New York", Georgia, serif;
   font-weight: 600;
   letter-spacing: -0.02em;
+}
+
+body, button, input, select, textarea {
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.eyebrow, [class*="tracking-[3px]"], [class*="tracking-[4px]"], [class*="tracking-wider"], [class*="tracking-widest"] {
+  font-family: "SF Mono", monospace !important;
 }
 
 /* Navigation Links decoration */
