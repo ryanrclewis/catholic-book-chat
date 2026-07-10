@@ -63,7 +63,7 @@ function TranscriptViewer({ transcript }) {
       {/* Transcript Text */}
       <div className="space-y-4">
         {renderedParagraphs.map((p, index) => (
-          <p key={index} className="text-sm md:text-[15px] text-[#3F2A22] leading-relaxed font-serif">
+          <p key={index} className="text-sm md:text-[15px] text-[#3F2A22] leading-relaxed font-serif max-w-3xl">
             {p}
           </p>
         ))}
@@ -130,7 +130,7 @@ export default function EpisodePage({ episode }) {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-12 flex flex-col gap-8">
+    <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-8 w-full">
       {/* Back Link */}
       <Link href="/episodes" className="text-sm font-medium text-[#B38B4D] hover:text-[#C9A35C] flex items-center gap-1 self-start transition-colors duration-200">
         ← Back to Episodes
@@ -149,28 +149,26 @@ export default function EpisodePage({ episode }) {
       </header>
 
       {/* Single Consolidated Content Card */}
-      <div className="bg-white border border-[#e5d9c8] rounded-3xl shadow-sm divide-y divide-[#e5d9c8] overflow-hidden">
+      <div className="bg-white border border-[#e5d9c8] rounded-3xl shadow-sm overflow-hidden">
         {/* 1. Player with download button */}
-        <section className="p-8 flex flex-col md:flex-row items-center gap-6 justify-between">
+        <section className="p-8 flex flex-row items-center gap-4 w-full">
           <div className="flex-grow w-full">
-            <h3 className="text-xs uppercase tracking-widest font-semibold text-[#8C6F55] mb-3 font-sans">Listen Now</h3>
-            <div className="audio-player-wrap border border-[#e5d9c8]">
-              <audio controls preload="metadata">
-                <source src={`/audio/${episodeData.audioFile}`} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-            </div>
+            <audio controls preload="metadata">
+              <source src={`/audio/${episodeData.audioFile}`} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
           </div>
-          <div className="flex-shrink-0 w-full md:w-auto mt-2 md:mt-6">
+          <div className="flex-shrink-0">
             <a
               href={`/audio/${episodeData.audioFile}`}
               download
-              className="btn btn-primary w-full md:w-auto px-6 py-3.5 flex items-center justify-center gap-2 text-sm font-semibold rounded-full hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+              aria-label="Download MP3"
+              title="Download MP3"
+              className="bg-[#4A1C2E] hover:bg-[#2F121E] text-white w-12 h-12 flex items-center justify-center rounded-full hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer shadow-sm"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17V3M12 17L6 11M12 17L18 11M4 21H20" />
               </svg>
-              Download MP3
             </a>
           </div>
         </section>
@@ -178,14 +176,14 @@ export default function EpisodePage({ episode }) {
         {/* 2. Show description and notes */}
         <section className="p-8 flex flex-col gap-6">
           <div>
-            <h3 className="text-xs uppercase tracking-widest font-semibold text-[#8C6F55] mb-3 font-sans">Description</h3>
-            <p className="text-[#3F2A22] leading-relaxed text-base">
+            <h3 className="text-2xl font-bold text-[#2C1F1A] font-serif mb-4">Description</h3>
+            <p className="text-[#3F2A22] leading-relaxed text-base max-w-3xl">
               {episodeData.description}
             </p>
           </div>
           {episodeData.showNotes && episodeData.showNotes.length > 0 && (
             <div>
-              <h3 className="text-xs uppercase tracking-widest font-semibold text-[#8C6F55] mb-3 font-sans">Show Notes</h3>
+              <h3 className="text-2xl font-bold text-[#2C1F1A] font-serif mb-4">Show Notes</h3>
               <ul className="space-y-3">
                 {episodeData.showNotes.map((note, index) => (
                   <li key={index} className="flex gap-3 text-[#3F2A22] leading-relaxed">
@@ -201,8 +199,8 @@ export default function EpisodePage({ episode }) {
         {/* 3. hosts and guests */}
         {(episodeData.host || episodeData.guest) && (
           <section className="p-8">
-            <h3 className="text-xs uppercase tracking-widest font-semibold text-[#8C6F55] mb-6 font-sans">Hosts & Guests</h3>
-            <div className={`grid gap-6 ${episodeData.host && episodeData.guest ? 'sm:grid-cols-2' : 'max-w-xs'}`}>
+            <h3 className="text-2xl font-bold text-[#2C1F1A] font-serif mb-4">Hosts & Guests</h3>
+            <div className={`grid gap-6 ${episodeData.host && episodeData.guest ? 'md:grid-cols-2 max-w-2xl' : 'max-w-xs'}`}>
               {/* Host */}
               {episodeData.host && (
                 <div className="rounded-2xl p-6 flex flex-col items-center text-center bg-[#F9F5ED]/40 border border-[#e5d9c8]/60 hover:shadow-md transition-shadow duration-300">
@@ -231,7 +229,7 @@ export default function EpisodePage({ episode }) {
         {/* 4. From this episode (external links) */}
         {episodeData.externalLinks && episodeData.externalLinks.length > 0 && (
           <section className="p-8">
-            <h3 className="text-xs uppercase tracking-widest font-semibold text-[#8C6F55] mb-4 font-sans">From This Episode</h3>
+            <h3 className="text-2xl font-bold text-[#2C1F1A] font-serif mb-4">From This Episode</h3>
             <ul className="space-y-3">
               {episodeData.externalLinks.map((link, index) => (
                 <li key={index}>
@@ -259,8 +257,8 @@ export default function EpisodePage({ episode }) {
 
         {/* 6. Episode Information */}
         <section className="p-8">
-          <h3 className="text-xs uppercase tracking-widest font-semibold text-[#8C6F55] mb-6 font-sans">Episode Information</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4">
+          <h3 className="text-2xl font-bold text-[#2C1F1A] font-serif mb-4">Episode Information</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-6 gap-x-4">
             <div className="flex flex-col gap-1">
               <span className="text-xs uppercase tracking-wider text-[#8C6F55] font-semibold font-sans">Frequency</span>
               <span className="text-sm md:text-base text-[#2C1F1A] font-medium">{episodeData.frequency || 'Bi-weekly'}</span>

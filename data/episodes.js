@@ -8,6 +8,7 @@ const episodes = [
     duration: '00:22:40',
     fileSize: 21760000,
     audioFile: 'the-great-divorce-chapter-1.mp3',
+    cardColor: '#3c2423',
     host: 'B. Shinkle',
     guest: 'Fr. John Smith',
     showNotes: [
@@ -45,6 +46,7 @@ Fr. John: Well, the Grey Town is a very interesting depiction of hell—or perha
     duration: '00:25:15',
     fileSize: 24240000,
     audioFile: 'introduction-to-confessions.mp3',
+    cardColor: '#1a332d',
     host: 'B. Shinkle',
     guest: '',
     showNotes: [
@@ -75,6 +77,7 @@ Augustine writes his confessions as a long prayer. It's not just an autobiograph
     duration: '00:19:50',
     fileSize: 19040000,
     audioFile: 'interior-castle-first-mansions.mp3',
+    cardColor: '#2b233a',
     host: 'B. Shinkle',
     guest: 'Dr. Mary Carson',
     showNotes: [
