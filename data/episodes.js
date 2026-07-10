@@ -8,6 +8,8 @@ const episodes = [
     duration: '00:22:40',
     fileSize: 21760000,
     audioFile: 'the-great-divorce-chapter-1.mp3',
+    host: 'B. Shinkle',
+    guest: 'Fr. John Smith',
     showNotes: [
       'Opening prayer and intentions for this season of Catholic Book Chat.',
       'Context for C.S. Lewis and why The Great Divorce still matters for Catholics.',
@@ -23,6 +25,8 @@ const episodes = [
     duration: '00:25:15',
     fileSize: 24240000,
     audioFile: 'introduction-to-confessions.mp3',
+    host: 'B. Shinkle',
+    guest: '',
     showNotes: [
       'Why Confessions remains a living companion for modern discipleship.',
       'How Augustine frames memory, grace, and restless hearts.',
@@ -38,6 +42,8 @@ const episodes = [
     duration: '00:19:50',
     fileSize: 19040000,
     audioFile: 'interior-castle-first-mansions.mp3',
+    host: 'B. Shinkle',
+    guest: 'Dr. Mary Carson',
     showNotes: [
       'A brief overview of Carmelite spirituality and Teresa of Ávila.',
       'The First Mansions: humility, self-knowledge, and perseverance.',
@@ -47,3 +53,4 @@ const episodes = [
 ]
 
 export default episodes
+

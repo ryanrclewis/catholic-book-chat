@@ -25,6 +25,8 @@ export default function AdminPage() {
   const [audioFile, setAudioFile] = useState(null)
   const [audioFilename, setAudioFilename] = useState('')
   const [showNotes, setShowNotes] = useState([''])
+  const [host, setHost] = useState('B. Shinkle')
+  const [guest, setGuest] = useState('')
   const [uploadProgress, setUploadProgress] = useState(0)
   const [isUploading, setIsUploading] = useState(false)
 
@@ -245,6 +247,8 @@ export default function AdminPage() {
         duration,
         fileSize,
         audioFile: audioFilename,
+        host: host || 'B. Shinkle',
+        guest: guest || '',
         showNotes: showNotes.filter(n => n.trim() !== '')
       }
 
@@ -269,6 +273,8 @@ export default function AdminPage() {
         setFileSize(0)
         setAudioFile(null)
         setAudioFilename('')
+        setHost('B. Shinkle')
+        setGuest('')
         setShowNotes([''])
         if (fileInputRef.current) fileInputRef.current.value = ''
         
@@ -537,6 +543,32 @@ export default function AdminPage() {
                     value={duration}
                     disabled={true}
                     className="w-full border border-[#d4c3a8] bg-[#EDE3D4] px-4 py-3 rounded-2xl outline-none text-[#5C4639] font-mono cursor-not-allowed"
+                  />
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-[#8C6F55] mb-2">Host Name</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. B. Shinkle"
+                    value={host}
+                    onChange={(e) => setHost(e.target.value)}
+                    disabled={isUploading}
+                    className="w-full border border-[#d4c3a8] focus:border-[#B38B4D] bg-[#F9F5ED] px-4 py-3 rounded-2xl outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-[#8C6F55] mb-2">Guest Name</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Fr. John Smith (Leave blank if none)"
+                    value={guest}
+                    onChange={(e) => setGuest(e.target.value)}
+                    disabled={isUploading}
+                    className="w-full border border-[#d4c3a8] focus:border-[#B38B4D] bg-[#F9F5ED] px-4 py-3 rounded-2xl outline-none"
                   />
                 </div>
               </div>

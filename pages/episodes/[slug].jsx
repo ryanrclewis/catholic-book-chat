@@ -91,6 +91,40 @@ export default function EpisodePage({ episode }) {
         </div>
       </section>
 
+      {/* Voices (Hosts & Guests) */}
+      {(episodeData.host || episodeData.guest) && (
+        <section className="w-full mt-4">
+          <div className="text-center mb-6">
+            <span className="uppercase tracking-[4px] text-xs font-semibold text-[#B38B4D]">THE VOICES</span>
+            <h3 className="text-2xl font-semibold tracking-tight mt-2 text-[#2C1F1A] font-serif">Hosts & Guests</h3>
+          </div>
+
+          <div className={`grid gap-6 mx-auto ${episodeData.host && episodeData.guest ? 'sm:grid-cols-2 max-w-2xl' : 'max-w-xs'}`}>
+            {/* Host */}
+            {episodeData.host && (
+              <div className="host-card rounded-3xl p-6 flex flex-col items-center text-center shadow-sm bg-white border border-[#e5d9c8]">
+                <div className="w-20 h-20 bg-[#EDE3D4] rounded-full mb-4 flex items-center justify-center ring-4 ring-[#F9F5ED]">
+                  <span className="text-2xl text-[#B38B4D]">👤</span>
+                </div>
+                <h4 className="font-semibold text-lg text-[#2C1F1A]">{episodeData.host}</h4>
+                <div className="text-[#B38B4D] text-xs tracking-widest mt-0.5 uppercase">Host</div>
+              </div>
+            )}
+
+            {/* Guest */}
+            {episodeData.guest && (
+              <div className="host-card rounded-3xl p-6 flex flex-col items-center text-center shadow-sm bg-white border border-[#e5d9c8]">
+                <div className="w-20 h-20 bg-[#EDE3D4] rounded-full mb-4 flex items-center justify-center ring-4 ring-[#F9F5ED]">
+                  <span className="text-2xl text-[#B38B4D]">👤</span>
+                </div>
+                <h4 className="font-semibold text-lg text-[#2C1F1A]">{episodeData.guest}</h4>
+                <div className="text-[#B38B4D] text-xs tracking-widest mt-0.5 uppercase">Guest</div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* Show Notes */}
       <section className="bg-white border border-[#e5d9c8] rounded-3xl p-8 shadow-sm">
         <h3 className="text-xl font-semibold text-[#2C1F1A] mb-4">Show Notes & Discuss</h3>
