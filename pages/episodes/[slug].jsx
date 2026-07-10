@@ -188,7 +188,7 @@ export default function EpisodePage({ episode }) {
           </div>
           <div className="flex-shrink-0">
             <a
-              href={`/audio/${episodeData.audioFile}`}
+              href={`/audio/${episodeData.audioFile}?download=true`}
               download
               aria-label="Download MP3"
               title="Download MP3"

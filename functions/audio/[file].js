@@ -45,6 +45,12 @@ export async function onRequest(context) {
   const headers = new Headers()
   object.writeHttpMetadata(headers)
   headers.set('etag', object.httpEtag)
+
+  // Force download if requested
+  const url = new URL(request.url)
+  if (url.searchParams.get('download') === 'true') {
+    headers.set('content-disposition', `attachment; filename="${key}"`)
+  }
   
   // Explicit range request metadata response
   if (object.range) {
