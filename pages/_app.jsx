@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3">
-              <img src="/assets/logo.jpg" alt="Between The Lines logo" className="w-9 h-9 rounded-full object-cover ring-1 ring-[#d4c3a8]" />
+              <span className="w-9 h-9 rounded-full bg-[#EDE3D4] flex items-center justify-center text-xl ring-1 ring-[#d4c3a8] select-none" role="img" aria-label="Between The Lines logo">📖</span>
               <span className="font-semibold text-xl tracking-tight text-[#2C1F1A]">Between The Lines</span>
             </Link>
 
